@@ -1,0 +1,55 @@
+---
+title: "Data Products Week 3 Project"
+author: "Brandon Robinson"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Overview
+The goal of the project is to Create a web page using R Markdown that features a map created with Leaflet. The project result will be hosted on either GitHub Pages, RPubs, or NeoCities.Your webpage must contain the date that you created the document, and it must contain a map created with Leaflet.
+
+## Project Guidelines
+
+The rubric contains the following two questions:
+
+1. Does the web page feature a date and is this date less than two months before the date that you're grading this assignment?
+2. Does the web page feature an interactive map that appears to have been created with Leaflet?
+
+## Project Execution
+
+First step is to load the necessary libraries
+```{r, echo = TRUE, message = FALSE}
+library(leaflet)
+library(data.table)
+library(dplyr)
+```
+
+For this project we will map the population of the largest cities in Norway. The data for the project is already downloaded and will be loaded into the global environment.
+
+```{r, echo = TRUE}
+no_pop <- read.csv("norway_populations.csv", header = TRUE)
+head(no_pop)
+names(no_pop)
+```
+
+The table is loaded, but includes several columns we do not need for creation of the map. The next step is to select the required columns and create a smaller data frame for our leaflet output
+
+```{r, echo = TRUE}
+pop_latlong <- no_pop %>% select(c("city", "lat", "lng", "population"))
+head(pop_latlong)
+df <- data.frame(pop_latlong)
+```
+
+The final step is to generate the map of populations in Norway
+
+```{r, echo = TRUE, message=FALSE}
+df %>% 
+        leaflet() %>%
+        addTiles() %>%
+        addCircles(weight = 1, radius = sqrt(df$population)*100)
+```
+
