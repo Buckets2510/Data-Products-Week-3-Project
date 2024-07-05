@@ -1,0 +1,28 @@
+---
+title: "Data Products Week 4 - US Violent Crimes"
+author: "Brandon Robinson"
+date: "`r Sys.Date()`"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Overview
+
+Create a web page presentation using R Markdown that features a plot created with Plotly.
+The presentation will use the `USArrest` dataset to view violent crimes by urban population.
+
+Urban population (`UrbanPop`) vs. murder (`Murder`, `Assault`, `Rape`). Each violent crime variable will be represented in a different color.
+
+## Create plot presentation
+
+```{r plot, echo=FALSE}
+suppressPackageStartupMessages(library(plotly))
+plot_ly(USArrests, x= ~UrbanPop, y = ~Murder, name = 'Murders', type = 'scatter', mode = 'markers', marker=list(color='red')) %>%
+        add_trace(y = ~Assault, name = 'Assaults', mode = 'markers', marker=list(color='green')) %>%
+        add_trace(y = ~Rape, name = 'Rape', mode = 'markers', marker=list(color='blue')) %>%
+        layout(title = 'US Violent Crime Rates', yaxis = list(title = 'Violent Crime Rate'))
+
+```
