@@ -1,0 +1,12 @@
+name: Compound_Interest_Calculator
+title: Compound_Interest_Calculator
+username: buckets265
+account: buckets265
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 12289133
+bundleId: 8837614
+url: https://buckets265.shinyapps.io/Compound_Interest_Calculator/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

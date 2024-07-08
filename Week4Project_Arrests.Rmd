@@ -1,8 +1,10 @@
 ---
 title: "Data Products Week 4 - US Violent Crimes"
 author: "Brandon Robinson"
-date: "`r Sys.Date()`"
-output: ioslides_presentation
+date: '`r Sys.Date()`'
+output:
+  ioslides_presentation: default
+  beamer_presentation: default
 ---
 
 ```{r setup, include=FALSE}
